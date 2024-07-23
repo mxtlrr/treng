@@ -1,5 +1,5 @@
 CXX				:= g++
-CXXFLAGS	:= -fPIC -Wall -Wextra -g -std=c++11
+CXXFLAGS	:= -fPIC -Wall -Wextra -g -std=c++11 -Iinclude/
 
 override CXXFILES := $(shell find ./ -type f -name "*.cpp")
 OFILES := $(patsubst %.cpp, %.o, $(CXXFILES))
