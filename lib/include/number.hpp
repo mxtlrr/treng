@@ -20,10 +20,20 @@ class Number {
     // positive scientific notation number. for example, 1e2 = 1*10^2 = 100.
     void fromSciNotation(std::string num);
   public:
+    Number(): digits(1,0){}
     Number(std::string num);
 
     /* Conversion */
     std::string toString();
+    int toInt();
+
+    /* Arithmetic. */
+
+    // a+b
+    Number operator+(const Number& b) const;
+
+    // a*b
+    Number operator*(Number& b) const;
 };
 
 #endif

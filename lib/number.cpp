@@ -44,3 +44,8 @@ std::string Number::toString() {
   }
   return result.empty() ? "0" : result;
 }
+
+
+int Number::toInt(){
+  return std::stoi(this->toString());
+}
