@@ -20,10 +20,10 @@ Number Number::operator+(const Number& b) const {
 
 Number Number::operator*(Number& b) const {
   
-  int counter = 1;
+  long long unsigned int counter = 1;
   Number num = *this;
   Number res = num;
-  while(counter != std::stoi(b.toString())){
+  while(counter != b.toInt()){
     res = res + num;
     counter++;
   }
@@ -33,8 +33,14 @@ Number Number::operator*(Number& b) const {
 
 #include "arithmetic.hpp"
 
+
+/* TODO: split this into the biggest number that b is divisible by,
+ * such that b<2400. For example,
+ 
+ * 3^6 would be split into (3^2)*(3^2)*(3^2) */
 Number pow(Number a, Number b){
-  int counter = 1;
+  long long unsigned int counter = 1;
+
   Number res = a;
   while(counter != b.toInt()){
     res = res * a;

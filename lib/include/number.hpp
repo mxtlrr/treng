@@ -25,7 +25,7 @@ class Number {
 
     /* Conversion */
     std::string toString();
-    int toInt();
+    long long unsigned int toInt();
 
     /* Arithmetic. */
 

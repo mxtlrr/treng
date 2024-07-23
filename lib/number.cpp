@@ -47,5 +47,5 @@ std::string Number::toString() {
 
 
 int Number::toInt(){
-  return std::stoi(this->toString());
+  return std::stoull(this->toString());
 }
