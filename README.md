@@ -8,12 +8,10 @@ Tetration is an operation based on repeated exponentations. We will use
 to describe it. Tetration itself is defined as
 
 $$
-
 a \uparrow\uparrow n := \begin{cases}
 1 & \text{if } n = 0,\\
 a^{a\uparrow\uparrow{(n-1)}} & \text{if } n > 0,
 \end{cases}
-
 $$
 
 These numbers tend to grow very fast:
