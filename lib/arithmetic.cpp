@@ -35,14 +35,55 @@ Number Number::operator*(Number& b) const {
 #include "arithmetic.hpp"
 
 
-/* TODO: split this into the biggest number that b is divisible by,
- * such that b<2400. For example,
- 
- * 3^6 would be split into (3^2)*(3^2)*(3^2) */
+std::vector<long> powersof2 = {
+  2, 4, 8, 16, 32, 64,
+  128, 256, 512, 1024, 2048, 4096,
+  8192 /* etc */
+};
+
+bool isPow2(long power){
+  for(size_t i = 0; i < powersof2.size(); i++)
+    if(powersof2[i] == power) return true;
+  return false;
+}
+
+
 Number pow(Number a, Number b){
   long long unsigned int counter = 1;
 
+  long power = b.toInt();
+  
+  // Check if we're dealing with something like
+  // 2^4096.
   Number res = a;
+  if(isPow2(power)){
+    // We are!
+    // Then, let's get the smallest one that does NOT equal power.
+    long result = 0;
+    for(size_t i = 0; i < powersof2.size(); i++){
+      if(powersof2[i] <= power && powersof2[i] != power)
+        result = powersof2[i];
+    }
+
+    // Check how many iterations to do
+    long iterations = (long)(power/result);
+
+    // Do the multiplication
+    long j = 1;
+    Number tmp = res;
+
+    for(long i = 0; i < iterations; i++){
+      while(j != result){
+        tmp = tmp * a;
+        j++;
+      }
+      j = 0; // Reset counter
+    }
+
+    return tmp;
+  }
+
+
   while(counter != b.toInt()){
     res = res * a;
     counter+=1;
