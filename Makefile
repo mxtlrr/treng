@@ -1,5 +1,5 @@
 CXX				:= g++
-CXXFLAGS	:= -Wall -Wextra -g -std=c++11 -Iinclude/
+CXXFLAGS	:= -Wall -Wextra -g -std=c++11 -Iinclude/ -Ilib/include/ $(LINK)
 
 LINK := -Lbin/lib/ -lnums
 
