@@ -5,9 +5,9 @@ override CXXFILES := $(shell find ./ -type f -name "*.cpp")
 OFILES := $(patsubst %.cpp, %.o, $(CXXFILES))
 
 library: ${OFILES}
-	@mkdir -p bin/lib
+	@mkdir -p ../bin/lib
 	@echo -n Making shared object...
-	@$(CXX) -shared $^ -o bin/lib/libnums.so
+	@$(CXX) -shared $^ -o ../bin/lib/libnums.so
 	@echo done!
 
 %.o: %.cpp

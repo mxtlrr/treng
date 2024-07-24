@@ -8,6 +8,10 @@ Number::Number(const std::string num){
   }
 }
 
+Number::Number(int num){
+	fromString(std::to_string(num)); // Stupid but also works
+}
+
 void Number::fromString(const std::string num){
   // Clear vector in case something weird happened
   digits.clear();

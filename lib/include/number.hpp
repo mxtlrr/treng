@@ -22,6 +22,7 @@ class Number {
   public:
     Number(): digits(1,0){}
     Number(std::string num);
+		Number(int num);
 
     /* Conversion */
     std::string toString();
