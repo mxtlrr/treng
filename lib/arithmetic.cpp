@@ -31,6 +31,7 @@ Number Number::operator*(Number& b) const {
   return res;
 }
 
+
 #include "arithmetic.hpp"
 
 

@@ -28,12 +28,34 @@ class Number {
     long long unsigned int toInt();
 
     /* Arithmetic. */
+    Number operator+(const Number& b) const;     // a+b
+    Number operator*(Number& b) const;           // a*b
+    
+    // This is so so stupid! Do NOT DO THIS
+    // FIX!!!
+    inline Number operator-(Number b){
+      Number res;
+      res.digits.clear();
 
-    // a+b
-    Number operator+(const Number& b) const;
+      int borrow = 0;
+      size_t maxsize = digits.size();
 
-    // a*b
-    Number operator*(Number& b) const;
+      for (size_t i = 0; i < maxsize; ++i) {
+        int diff = digits[i] - borrow;
+        if (i < b.digits.size()) diff -= b.digits[i];
+
+        if(diff<0){
+          diff+=10; borrow=1;
+        } else borrow=0;
+
+        res.digits.push_back(diff);
+      }
+
+      // Remove leading zeros
+      while (res.digits.size() > 1 && res.digits.back() == 0)
+        res.digits.pop_back();
+      return res;
+    }
 };
 
 #endif

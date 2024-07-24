@@ -46,6 +46,6 @@ std::string Number::toString() {
 }
 
 
-int Number::toInt(){
+long long unsigned int Number::toInt(){
   return std::stoull(this->toString());
 }
