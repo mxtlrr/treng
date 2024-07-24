@@ -33,4 +33,12 @@ make
 ```
 
 # Usage
-To be written.
+Treng uses the format $f(a,n) = a\uparrow\uparrow{n}$, so for example,
+```
+$ ./bin/treng
+> f(2,4)
+a=2 | n=4
+Result: 65536
+```
+
+**NOTE: Run `source export.sh` to be able to run, or move `bin/lib/libnums.so` to `/usr/lib`**
