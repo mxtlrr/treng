@@ -82,12 +82,34 @@ Number pow(Number a, Number b){
 
     return tmp;
   }
-
-
-  while(counter != b.toInt()){
-    res = res * a;
-    counter+=1;
+  // Not a power of two. Find the biggest possible divisor
+  // of power.
+  long biggest_divisor = 1;
+  for(long i = power/2; i >= 1; i--){
+    if((power % i == 0) && i > biggest_divisor)
+      biggest_divisor = i;
   }
 
-  return res;
+  if(biggest_divisor == 1){
+    // Number is prime. Just handle like usual
+    while(counter != b.toInt()){
+      res = res * a;
+      counter+=1;
+    }
+    return res;
+  }
+
+  long iterations = (long)(power/biggest_divisor);
+  Number tmp = res;
+
+  long j = 1;
+  for(long i = 0; i < iterations; i++){
+    while(j != biggest_divisor){
+      tmp = tmp * a;
+      j++;
+    }
+    j = 0; // Reset counter
+  }
+
+  return tmp;
 }
