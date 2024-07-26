@@ -32,14 +32,14 @@ bool Number::operator>=(Number b){
   Number a = *this;
 
   // Base cases
-  if(a.digits.size() > b.digits.size())      return true;  // a is greater than b.
-  else if(a.digits.size() < b.digits.size()) return false; // a is less than b.
+  if(digits.size() > b.digits.size())      return true;  // a is greater than b.
+  else if(digits.size() < b.digits.size()) return false; // a is less than b.
 
   // Check each value of the digits, they should be the same.
   for(size_t i = a.digits.size()-1;i >= 0; --i){
     // Is anyone digit greater than the other?
-    if(a.digits[i] > b.digits[i]) return true; // Yes! a is bigger than b.
-    if(a.digits[i] < b.digits[i]) return false; // No. a is smaller than b.
+    if(digits[i] > b.digits[i]) return true; // Yes! a is bigger than b.
+    if(digits[i] < b.digits[i]) return false; // No. a is smaller than b.
   }
 
   // Still here? Numbers are equal.
