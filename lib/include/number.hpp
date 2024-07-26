@@ -12,7 +12,6 @@ class Number {
     /* Every digit is stored as an unsigned character (255) in a vector.
      * They're stored in reverse, i.e. "1000" would be stored as "0001"
      * **This is to make arithmetic easier.***/
-    std::vector<unsigned char> digits;
     
     // convert string to a Number type
     void fromString(std::string num);
@@ -22,6 +21,7 @@ class Number {
     // positive scientific notation number. for example, 1e2 = 1*10^2 = 100.
     void fromSciNotation(std::string num);
   public:
+    std::vector<unsigned char> digits;
     Number(): digits(1,0){}
     Number(std::string num);
 		Number(int num);
