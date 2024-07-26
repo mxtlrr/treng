@@ -89,70 +89,9 @@ bool isPow2_num(Number power){
 
 
 Number pow(Number a, Number b){
-  long long unsigned int counter = 1;
-
-
-  long power = b.toInt();
-  
-  // Check if we're dealing with something like
-  // 2^4096.
   Number res = a;
-  if(isPow2(power)){
-    // We are!
-    // Then, let's get the smallest one that does NOT equal power.
-    long result = 0;
-    for(size_t i = 0; i < powersof2.size(); i++){
-      if(powersof2[i] <= power && powersof2[i] != power)
-        result = powersof2[i];
-    }
-
-    // Check how many iterations to do
-    // This specific line causes an arithmetic exception. 
-    long iterations = (long)(power/result);
-
-    // Do the multiplication
-    long j = 1;
-    Number tmp = res;
-
-    for(long i = 0; i < iterations; i++){
-      while(j != result){
-        tmp = tmp * a;
-        j++;
-      }
-      j = 0; // Reset counter
-    }
-
-    return tmp;
+  for(Number k(1); k != b; k = k + Number(1)){
+    res = res*a;
   }
-  // Not a power of two. Find the biggest possible divisor
-  // of power.
-  long biggest_divisor = 1;
-  for(long i = power/2; i >= 1; i--){
-    if((power % i == 0) && i > biggest_divisor)
-      biggest_divisor = i;
-  }
-
-  if(biggest_divisor == 1){
-    // Number is prime. Just handle like usual.
-    // TODO: fix a warning here.
-    while(counter != power){
-      res = res * a;
-      counter+=1;
-    }
-    return res;
-  }
-
-  long iterations = (long)(power/biggest_divisor);
-  Number tmp = res;
-
-  long j = 1;
-  for(long i = 0; i < iterations; i++){
-    while(j != biggest_divisor){
-      tmp = tmp * a;
-      j++;
-    }
-    j = 0; // Reset counter
-  }
-
-  return tmp;
+  return res;
 }
