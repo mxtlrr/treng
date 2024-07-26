@@ -5,6 +5,8 @@
 #include <vector>
 #include <string>
 
+typedef unsigned char uc;
+
 class Number {
   private:
     /* Every digit is stored as an unsigned character (255) in a vector.
@@ -29,8 +31,8 @@ class Number {
     long long unsigned int toInt();
 
     /* Arithmetic. */
-    Number operator+(const Number& b) const;     // a+b
-    Number operator*(Number& b) const;           // a*b
+    Number operator+(Number b) const;            // a+b
+    Number operator*(Number b) const;            // a*b
     
     // This is so so stupid! Do NOT DO THIS
     // FIX!!!
@@ -57,6 +59,10 @@ class Number {
         res.digits.pop_back();
       return res;
     }
+
+    /* Comparison operators */
+    bool operator==(Number b);
+    inline bool operator!=(Number &l){ return !(*this==l); }
 };
 
 #endif

@@ -8,5 +8,7 @@
 
 
 Number pow(Number a, Number b);
+bool isPow2_num(Number power);
+
 
 #endif

@@ -1,7 +1,7 @@
 #include "number.hpp"
 
 
-Number Number::operator+(const Number& b) const {
+Number Number::operator+(Number b) const {
   Number res;
   res.digits.clear();
 
@@ -18,17 +18,43 @@ Number Number::operator+(const Number& b) const {
   return res;
 }
 
-Number Number::operator*(Number& b) const {
-  
-  long long unsigned int counter = 1;
+Number Number::operator*(Number b) const {
+  // (#3)
+  // Instead, we can use a Number type for a coutner.
+  Number counter(1);
+  Number one(1);
+
   Number num = *this;
   Number res = num;
-  while(counter != b.toInt()){
+  while(counter != b){
     res = res + num;
-    counter++;
+    counter = counter + one;
   }
 
   return res;
+}
+
+
+/* Comparison operators */
+bool Number::operator==(Number b){
+  std::vector<uc> digits_a = this->digits;
+  std::vector<uc> digits_b = b.digits;
+
+  if(digits_a.size() != digits_b.size()) return false;
+  
+  // Check if every digit in digits_a corresponds to the same
+  // digit in digits_b
+  std::vector<uc> correct_digits;
+  for(size_t n = 0; n != digits_a.size(); n++){
+    if(digits_a[n] == digits_b[n]){
+      correct_digits.push_back(1);
+    }
+  }
+
+  // If correct_digits.size() = digits_[a/b].size(), then
+  // we have the correct value.
+  if(correct_digits.size() == digits_a.size()) return true;
+  return false;
 }
 
 
@@ -48,8 +74,23 @@ bool isPow2(long power){
 }
 
 
+std::vector<Number> powersof2_num = {
+  Number(2), Number(4), Number(8), Number(16), Number(32), Number(64),
+  Number(128), Number(256), Number(512), Number(1024), Number(2048), Number(4096),
+  Number(8192) /* etc */
+};
+
+bool isPow2_num(Number power){
+  for(size_t i = 0; i < powersof2_num.size(); i++){
+    if(powersof2_num[i] == power) return true;
+  }
+  return false;
+}
+
+
 Number pow(Number a, Number b){
   long long unsigned int counter = 1;
+
 
   long power = b.toInt();
   
@@ -66,6 +107,7 @@ Number pow(Number a, Number b){
     }
 
     // Check how many iterations to do
+    // This specific line causes an arithmetic exception. 
     long iterations = (long)(power/result);
 
     // Do the multiplication
@@ -91,8 +133,9 @@ Number pow(Number a, Number b){
   }
 
   if(biggest_divisor == 1){
-    // Number is prime. Just handle like usual
-    while(counter != b.toInt()){
+    // Number is prime. Just handle like usual.
+    // TODO: fix a warning here.
+    while(counter != power){
       res = res * a;
       counter+=1;
     }
