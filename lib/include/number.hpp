@@ -63,6 +63,13 @@ class Number {
     /* Comparison operators */
     bool operator==(Number b);
     inline bool operator!=(Number &l){ return !(*this==l); }
+    
+    /* Relation operators */
+    bool operator>=(Number b);
+    inline bool operator>(Number b){ return (*this>=b); }
+
+    bool operator<=(Number b);
+    inline bool operator<(Number b){ return (*this<=b); }
 };
 
 #endif
