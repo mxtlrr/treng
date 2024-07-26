@@ -52,3 +52,31 @@ bool Number::operator<=(Number b){
 
 
 /* Other operators, i.e. ++, --, etc. */
+
+// This is such a shitty way to do this but it works (It does not.)
+Number Number::operator%(Number b) const {
+    Number dividend = *this;
+    Number current;
+
+    for (int i = dividend.digits.size() - 1; i >= 0; --i) {
+        // Bring down the next digit to the current portion
+        current.digits.insert(current.digits.begin(), dividend.digits[i]);
+
+        // Remove leading zeros from the current portion
+        while (current.digits.size() > 1 && current.digits.back() == 0) {
+            current.digits.pop_back();
+        }
+
+        // Subtract the b from the current portion until it's smaller than the b
+        while (current >= b) {
+            current = current - b;
+        }
+    }
+
+    // Remove leading zeros from the remainder
+    while (current.digits.size() > 1 && current.digits.back() == 0) {
+        current.digits.pop_back();
+    }
+
+    return current;
+}

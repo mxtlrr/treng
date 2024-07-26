@@ -83,10 +83,43 @@ Number Number::operator/(Number b) const {
 
 #include "arithmetic.hpp"
 
+
+#include "pow-optimizations.hpp"
 Number pow(Number a, Number b){
-  Number res = a;
-  for(Number k(1); k != b; k = k + Number(1)){
-    res = res*a;
+  if(isPow2(b)){
+    Number smallest_pow2 = smallest_pow_2(b);
+    Number iterations = (b/smallest_pow2);
+
+    Number j(1); // Counter
+    Number tmp = a;
+    for(Number i(0); i < iterations; i = i + 1){
+      while(j != smallest_pow2){
+        tmp = tmp * a;
+        j   = j + 1;
+      }
+      j = Number(0);
+    }
+    return tmp;
   }
-  return res;
+
+  // Check if we're prime. We can do this by this weird fucking function
+  if(isPrime(b)){
+    Number res = a;
+    for(Number k(1); k != b; k=k+Number(1)) res = res*a;
+    return res;
+  }
+
+  // Else, just act usual. Get biggest divisor though.
+  Number biggestdiv = get_biggest_divisor(b);
+  Number j(1);
+  Number tmp = a;
+  for(Number i(0); i <= (b/biggestdiv); i = i + 1){
+    while(j != biggestdiv){
+      tmp = tmp * a;
+      j   = j + 1;
+    }
+    j = Number(0);
+  }
+  return tmp;
 }
+

@@ -46,6 +46,9 @@ class Number {
 
     bool operator<=(Number b);
     inline bool operator<(Number b){ return (*this<=b); }
+
+    /* Other */
+    Number operator%(Number b) const; // a%b
 };
 
 #endif
