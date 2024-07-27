@@ -1,22 +1,15 @@
 # treng
-An engine for computing tetration, written in C++. It comes with a built-in
-"big-num" library for the numbers.
+Treng is an engine for performing hyperoperations, like tetration,
+pentation, and so on and for forth. It comes with its own small
+library for handling big numbers, see `lib/`
 
-## What's Tetration?
-Tetration is an operation based on repeated exponentations. We will use
-[Knuth's up arrow notation](https://en.wikipedia.org/wiki/Knuth%27s_up_arrow_notation)
-to describe it. Tetration itself is defined as
+# What's Tetration?
+Tetration is repeated exponentiation, for example $a\uparrow\uparrow{n}$
+means $a^{\cdot^{\cdot^{a}}}$, where $n$ copies of $a$ are iterated
+via exponentiation, for example:
 
-$$
-a \uparrow\uparrow n := \begin{cases}
-1 & \text{if } n = 0,\\
-a^{a\uparrow\uparrow{(n-1)}} & \text{if } n > 0,
-\end{cases}
-$$
-
-These numbers tend to grow very fast:
-|       Tetration      | Number (approx) |
-| -------------------- | --------------- |
+| Tetration | Value |
+| --------- | ----- |
 | $2\uparrow\uparrow1$ | 1               |
 | $2\uparrow\uparrow2$ | 4               |
 | $2\uparrow\uparrow3$ | 16              |
@@ -24,21 +17,12 @@ These numbers tend to grow very fast:
 | $2\uparrow\uparrow5$ | $2\cdot10^{19728}$|
 
 
-# Compilation
-This requires G++ to compile for 64-bit. You are also probably going to want
-to compile this on Linux, it generates a `.so` file.
-```
-make -C lib/
-make
-```
-
 # Usage
-Treng uses the format $f(a,n) = a\uparrow\uparrow{n}$, so for example,
-```
-$ ./bin/treng
-> f(2,4)
-a=2 | n=4
-Result: 65536
-```
+Run `src/treng.js`, there are a few functions that you can use, see the
+table below:
 
-**NOTE: Run `source export.sh` to be able to run, or move `bin/lib/libnums.so` to `/usr/lib`**
+| Function syntax | What it does |
+| --------------- | ------------ |
+| `f(a,n)`        | $a\uparrow\uparrow{n}$ |
+| `g(a,n)`        | $a\uparrow\uparrow\uparrow{n}$ |
+| `h(a,n)`        | $a\uparrow\uparrow\uparrow\uparrow{n}$ |
