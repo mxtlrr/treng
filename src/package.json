@@ -1,0 +1,18 @@
+{
+  "name": "numlib",
+  "version": "0.0.1",
+  "description": "A small library which implements numbers bigger than most data types can handle, as well as implements arithmetic based on those numbers.",
+  "main": "treng.js",
+  "type": "module",
+  
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mxtlrr/treng.git"
+  },
+  "author": "lm6",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mxtlrr/treng/issues"
+  },
+  "homepage": "https://github.com/mxtlrr/treng#readme"
+}
